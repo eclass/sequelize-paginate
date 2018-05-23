@@ -25,6 +25,7 @@ class SequelizePaginate {
      * @typedef {Object} paginateResult
      * @property {Array} docs Docs
      * @property {Number} pages Number of page
+     * @property {Number} total Total of docs
      */
     /**
      * pagination
@@ -42,7 +43,7 @@ class SequelizePaginate {
       options.offset = params.paginate * (params.page - 1)
       if (params.order) options.order = params.order
       const docs = await Model.findAll(options)
-      return { docs, pages }
+      return { docs, pages, total }
     }
     const instanceOrModel = Model.Instance || Model
     instanceOrModel.paginate = pagination
