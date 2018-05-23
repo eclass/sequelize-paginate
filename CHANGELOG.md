@@ -1,3 +1,9 @@
+#### 1.1.1 (2018-05-23)
+
+##### Bug Fixes
+
+* **query:**  enable all query options ([65858084](https://github.com/eclass/sequelize-paginate/commit/65858084bfc0688ced18986fe5aa0f89398d1032))
+
 ### 1.1.0 (2018-05-23)
 
 ##### Chores
