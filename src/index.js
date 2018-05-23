@@ -13,10 +13,7 @@ class SequelizePaginate {
   paginate (Model) {
     /**
      * The paginate options
-     * @typedef {Object} paginateOptions
-     * @property {Array} attributes Model attributes
-     * @property {Object} where Model where
-     * @property {Array} order Model order
+     * @typedef {Object} paginateOptions Sequelize query options
      * @property {Number} paginate Results per page
      * @property {Number} page Number of page
      */
@@ -33,11 +30,19 @@ class SequelizePaginate {
      * @return {paginateResult} Total pages and docs
      */
     const pagination = async function (params) {
-      const options = {
-        attributes: params.attributes,
-        where: params.where
-      }
-      const total = await Model.count({ where: options.where })
+      const options = Object.keys(params).reduce((acc, key) => {
+        if (!['paginate', 'page'].includes(key)) {
+          acc[key] = params[key]
+        }
+        return acc
+      }, {})
+      const countOptions = Object.keys(options).reduce((acc, key) => {
+        if (!['order'].includes(key)) {
+          acc[key] = params[key]
+        }
+        return acc
+      }, {})
+      const total = await Model.count(countOptions)
       const pages = Math.ceil(total / params.paginate)
       options.limit = params.paginate
       options.offset = params.paginate * (params.page - 1)
