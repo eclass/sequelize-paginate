@@ -37,7 +37,7 @@ class SequelizePaginate {
         return acc
       }, {})
       const countOptions = Object.keys(options).reduce((acc, key) => {
-        if (!['order'].includes(key)) {
+        if (!['order', 'attributes'].includes(key)) {
           acc[key] = params[key]
         }
         return acc
