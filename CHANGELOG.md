@@ -1,3 +1,9 @@
+#### 1.1.2 (2018-05-24)
+
+##### Bug Fixes
+
+* **count:**  remove attributes in count query ([96026406](https://github.com/eclass/sequelize-paginate/commit/96026406ae7d6f903fbe6911cc98f8af70a1f6a6))
+
 #### 1.1.1 (2018-05-23)
 
 ##### Bug Fixes
