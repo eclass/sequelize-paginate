@@ -46,6 +46,14 @@ class SequelizePaginate {
       const pages = Math.ceil(total / params.paginate)
       options.limit = params.paginate
       options.offset = params.paginate * (params.page - 1)
+      /* eslint-disable no-console */
+      if (params.limit) {
+        console.warn(`(sequelize-pagination) Warning: limit option is ignored.`)
+      }
+      if (params.offset) {
+        console.warn(`(sequelize-pagination) Warning: offset option is ignored.`)
+      }
+      /* eslint-enable no-console */
       if (params.order) options.order = params.order
       const docs = await Model.findAll(options)
       return { docs, pages, total }

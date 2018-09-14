@@ -41,6 +41,8 @@ const options = {
 const { docs, pages, total } = await db.MyModel.paginate(options)
 ```
 
+**NOTE:** _If **options** include **limit** or **offset** are ignored._
+
 ## License
 
 [MIT](https://tldrlegal.com/license/mit-license)
