@@ -7,10 +7,7 @@
     "lint": "eslint --fix .",
     "format": "prettier-standard 'src/**/*.js'",
     "pretest": "npm run lint -s && npm run format -s",
-    "test": "echo 'not test'",
-    "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version major && git push origin && git push origin --tags && npm publish",
-    "release:minor": "changelog -m && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version minor && git push origin && git push origin --tags && npm publish",
-    "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' && npm version patch && git push origin && git push origin --tags && npm publish"
+    "test": "echo 'not test'"
   },
   "engines": {
     "node": ">=8"
@@ -37,7 +34,6 @@
     "eslint-plugin-node": "7.0.1",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0",
-    "generate-changelog": "1.7.1",
     "husky": "1.0.0-rc.14",
     "lint-staged": "7.2.2",
     "prettier-standard": "8.0.1"
