@@ -39,10 +39,13 @@
     "@semantic-release/npm": "5.1.1",
     "chai": "4.2.0",
     "eslint": "5.9.0",
+    "eslint-config-jsdoc-strict": "1.0.0",
     "eslint-config-standard": "12.0.0",
     "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsdoc": "3.9.1",
     "eslint-plugin-node": "8.0.0",
     "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-security": "1.4.0",
     "eslint-plugin-standard": "4.0.0",
     "husky": "1.2.0",
     "lint-staged": "8.1.0",
@@ -57,11 +60,34 @@
     "travis-deploy-once": "5.0.7"
   },
   "eslintConfig": {
-    "extends": "standard",
+    "extends": [
+      "eslint:recommended",
+      "standard",
+      "jsdoc-strict",
+      "plugin:security/recommended"
+    ],
+    "plugins": [
+      "promise",
+      "security"
+    ],
     "rules": {
       "no-console": [
         "error"
-      ]
+      ],
+      "require-await": [
+        "error"
+      ],
+      "promise/always-return": "error",
+      "promise/no-return-wrap": "error",
+      "promise/param-names": "error",
+      "promise/catch-or-return": "error",
+      "promise/no-native": "off",
+      "promise/no-nesting": "warn",
+      "promise/no-promise-in-callback": "warn",
+      "promise/no-callback-in-promise": "warn",
+      "promise/no-new-statics": "error",
+      "promise/no-return-in-finally": "warn",
+      "promise/valid-params": "warn"
     }
   },
   "eslintIgnore": [
