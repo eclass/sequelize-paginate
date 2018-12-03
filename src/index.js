@@ -23,8 +23,8 @@ class SequelizePaginate {
     /**
      * The paginate options
      * @typedef {Object} paginateOptions Sequelize query options
-     * @property {Number} paginate Results per page
-     * @property {Number} page Number of page
+     * @property {Number} [paginate=25] Results per page
+     * @property {Number} [page=1] Number of page
      */
     /**
      * The paginate result
@@ -36,30 +36,28 @@ class SequelizePaginate {
     /**
      * Pagination.
      *
-     * @param {paginateOptions} params - Options to filter query.
+     * @param {paginateOptions} [params] - Options to filter query.
      * @returns {paginateResult} Total pages and docs.
      * @example
      * const { docs, pages, total } = MyModel.paginate({ page: 1, paginate: 25 })
      */
-    const pagination = async function (params) {
-      const options = Object.keys(params).reduce((acc, key) => {
-        if (!['paginate', 'page'].includes(key)) {
-          // eslint-disable-next-line security/detect-object-injection
-          acc[key] = params[key]
-        }
-        return acc
-      }, {})
+    const pagination = async function ({
+      page = 1,
+      paginate = 25,
+      ...params
+    } = {}) {
+      const options = Object.assign({}, params)
       const countOptions = Object.keys(options).reduce((acc, key) => {
         if (!['order', 'attributes', 'include'].includes(key)) {
           // eslint-disable-next-line security/detect-object-injection
-          acc[key] = params[key]
+          acc[key] = options[key]
         }
         return acc
       }, {})
       const total = await Model.count(countOptions)
-      const pages = Math.ceil(total / params.paginate)
-      options.limit = params.paginate
-      options.offset = params.paginate * (params.page - 1)
+      const pages = Math.ceil(total / paginate)
+      options.limit = paginate
+      options.offset = paginate * (page - 1)
       /* eslint-disable no-console */
       if (params.limit) {
         console.warn(`(sequelize-pagination) Warning: limit option is ignored.`)

@@ -31,10 +31,13 @@ module.exports = (sequelize, DataTypes) => {
 
 // controller.js
 const { Op } = db.sequelize
+// Default page = 1 and paginate = 25
+const { docs, pages, total } = await db.MyModel.paginate()
+// Or with extra options
 const options = {
   attributes: ['id', 'name'],
-  page: 1,
-  paginate: 25,
+  page: 1, // Default 1
+  paginate: 25, // Default 25
   order: [['name', 'DESC']],
   where: { name: { [Op.like]: `%elliot%` } }
 }
