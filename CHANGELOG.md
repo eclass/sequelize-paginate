@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/eclass/sequelize-paginate/compare/v1.1.2...v1.1.3) (2018-09-14)
+
+
+### Bug Fixes
+
+* **options:** add warning if provide limit or offset ([206a8ae](https://github.com/eclass/sequelize-paginate/commit/206a8ae)), closes [#1](https://github.com/eclass/sequelize-paginate/issues/1)
+
 #### 1.1.2 (2018-05-24)
 
 ##### Bug Fixes
@@ -25,4 +32,3 @@
 ##### Chores
 
 * **project:**  first commit ([06ca9148](https://github.com/eclass/sequelize-paginate/commit/06ca9148f83c2a32f27270036e189b089a4c1655))
-
