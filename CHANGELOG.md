@@ -1,3 +1,11 @@
+## [1.1.4](https://github.com/eclass/sequelize-paginate/compare/v1.1.3...v1.1.4) (2018-12-03)
+
+
+### Bug Fixes
+
+* **count:** remove include from options ([343a0e5](https://github.com/eclass/sequelize-paginate/commit/343a0e5))
+* **pagination:** set page to 1 and paginate to 25 by default ([bf44449](https://github.com/eclass/sequelize-paginate/commit/bf44449))
+
 ## [1.1.3](https://github.com/eclass/sequelize-paginate/compare/v1.1.2...v1.1.3) (2018-09-14)
 
 
