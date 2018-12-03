@@ -37,7 +37,7 @@ class SequelizePaginate {
         return acc
       }, {})
       const countOptions = Object.keys(options).reduce((acc, key) => {
-        if (!['order', 'attributes'].includes(key)) {
+        if (!['order', 'attributes', 'include'].includes(key)) {
           acc[key] = params[key]
         }
         return acc
@@ -51,7 +51,9 @@ class SequelizePaginate {
         console.warn(`(sequelize-pagination) Warning: limit option is ignored.`)
       }
       if (params.offset) {
-        console.warn(`(sequelize-pagination) Warning: offset option is ignored.`)
+        console.warn(
+          `(sequelize-pagination) Warning: offset option is ignored.`
+        )
       }
       /* eslint-enable no-console */
       if (params.order) options.order = params.order
