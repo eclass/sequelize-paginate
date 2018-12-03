@@ -1,14 +1,23 @@
 'use strict'
 
+/**
+ * Class to paginate sequelite results.
+ */
 class SequelizePaginate {
   /**
    * Sequelize Model
+   * @typedef {Object} Model
    * @external {Model} http://docs.sequelizejs.com/class/lib/model.js~Model.html
    */
   /**
-   * Method to append paginate method to Model
-   * @param {Model} Model Sequelize Model
-   * @param {paginateOptions} options
+   * Method to append paginate method to Model.
+   *
+   * @param {Model} Model - Sequelize Model.
+   * @returns {*} -
+   * @example
+   * const sequelizePaginate = require('sequelize-paginate')
+   *
+   * sequelizePaginate.paginate(MyModel)
    */
   paginate (Model) {
     /**
@@ -25,19 +34,24 @@ class SequelizePaginate {
      * @property {Number} total Total of docs
      */
     /**
-     * pagination
-     * @param {paginateOptions} params Options to filter query
-     * @return {paginateResult} Total pages and docs
+     * Pagination.
+     *
+     * @param {paginateOptions} params - Options to filter query.
+     * @returns {paginateResult} Total pages and docs.
+     * @example
+     * const { docs, pages, total } = MyModel.paginate({ page: 1, paginate: 25 })
      */
     const pagination = async function (params) {
       const options = Object.keys(params).reduce((acc, key) => {
         if (!['paginate', 'page'].includes(key)) {
+          // eslint-disable-next-line security/detect-object-injection
           acc[key] = params[key]
         }
         return acc
       }, {})
       const countOptions = Object.keys(options).reduce((acc, key) => {
         if (!['order', 'attributes', 'include'].includes(key)) {
+          // eslint-disable-next-line security/detect-object-injection
           acc[key] = params[key]
         }
         return acc
