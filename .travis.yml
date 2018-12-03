@@ -1,13 +1,47 @@
 language: node_js
+services:
+  - mysql
 cache:
   directories:
     - ~/.npm
+    - .nyc_output
+node_js:
+  - "10"
 notifications:
   email: false
-node_js:
-  - '10'
-after_success:
-  - npm run travis-deploy-once "npm run semantic-release"
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+stages:
+  - lint
+  - test
+  - coverage
+  - name: deploy
+    if: branch = master
+jobs:
+  include:
+    - stage: lint
+      name: eslint
+      script: npx eslint .
+    - stage: lint
+      name: commitlint
+      before_script:
+        - npm i -g @commitlint/travis-cli
+      script: commitlint-travis
+    - stage: test
+      node_js:
+        - "10"
+        - "8"
+      env:
+        - DATABASE=mysql://root@localhost/test
+      before_install:
+        - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+      script: npm t
+    - stage: coverage
+      before_script:
+        - npm i -g coveralls codeclimate-test-reporter
+      script:
+        - npx nyc check-coverage --lines 100 --per-file
+      after_success:
+        - npx nyc report > lcov.info
+        - coveralls < lcov.info
+        - codeclimate-test-reporter < lcov.info
+    - stage: deploy
+      script: npx semantic-release
