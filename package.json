@@ -5,7 +5,7 @@
   "main": "src",
   "scripts": {
     "lint": "eslint --fix .",
-    "format": "prettier-standard 'src/**/*.js'",
+    "format": "prettier-standard '{src,test}/**/*.js'",
     "test": "mocha test --exit --no-timeouts",
     "commit": "commit",
     "travis-deploy-once": "travis-deploy-once",
@@ -74,7 +74,7 @@
   },
   "lint-staged": {
     "linters": {
-      "src/**/*.js": [
+      "{src,test}/**/*.js": [
         "eslint --fix",
         "prettier-standard",
         "git add"
