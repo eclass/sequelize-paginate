@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.6.38
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+  mycli:
+    image: lgatica/mycli
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      DATABASE: mysql://root:root@db/test
+    entrypoint: /bin/sh
+    tty: true

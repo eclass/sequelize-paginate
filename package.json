@@ -1,13 +1,12 @@
 {
   "name": "sequelize-paginate",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Sequelize model plugin for add paginate method",
   "main": "src",
   "scripts": {
     "lint": "eslint --fix .",
     "format": "prettier-standard 'src/**/*.js'",
-    "pretest": "npm run lint -s && npm run format -s",
-    "test": "echo 'not test'",
+    "test": "mocha test --exit --no-timeouts",
     "commit": "commit",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
@@ -38,6 +37,7 @@
     "@semantic-release/git": "7.0.4",
     "@semantic-release/github": "5.0.5",
     "@semantic-release/npm": "5.0.4",
+    "chai": "4.2.0",
     "eslint": "5.5.0",
     "eslint-config-standard": "12.0.0",
     "eslint-plugin-import": "2.14.0",
@@ -46,8 +46,13 @@
     "eslint-plugin-standard": "4.0.0",
     "husky": "1.0.0-rc.14",
     "lint-staged": "7.2.2",
+    "lodash.range": "3.2.0",
+    "mocha": "5.2.0",
+    "mysql2": "1.6.4",
     "prettier-standard": "8.0.1",
+    "promise-sequential": "1.1.1",
     "semantic-release": "15.9.15",
+    "sequelize": "4.41.2",
     "travis-deploy-once": "5.0.7"
   },
   "eslintConfig": {
