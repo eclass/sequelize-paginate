@@ -46,12 +46,40 @@ describe('sequelizePaginate', () => {
     )
   })
   describe('', () => {
-    it('should paginate authors', async () => {
+    it('should paginate with defaults', async () => {
+      const { docs, pages, total } = await Author.paginate()
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(25)
+      expect(pages).to.equal(4)
+      expect(total).to.equal(99)
+    })
+
+    it('should paginate with page and paginate', async () => {
+      const { docs, pages, total } = await Author.paginate({
+        page: 2,
+        paginate: 50
+      })
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(49)
+      expect(pages).to.equal(2)
+      expect(total).to.equal(99)
+    })
+
+    it('should paginate and ignore limit and offset', async () => {
+      const { docs, pages, total } = await Author.paginate({
+        limit: 2,
+        offset: 50
+      })
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(25)
+      expect(pages).to.equal(4)
+      expect(total).to.equal(99)
+    })
+
+    it('should paginate with extras', async () => {
       const { docs, pages, total } = await Author.paginate({
         include: [{ model: Book }],
-        order: [['id']],
-        page: 1,
-        paginate: 25
+        order: [['id']]
       })
       expect(docs).to.be.an('array')
       expect(docs.length).to.equal(25)
