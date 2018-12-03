@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/sequelize-paginate.svg)](https://www.npmjs.com/package/sequelize-paginate)
 [![npm downloads](https://img.shields.io/npm/dm/sequelize-paginate.svg)](https://www.npmjs.com/package/sequelize-paginate)
+[![Build Status](https://travis-ci.org/eclass/sequelize-paginate.svg?branch=master)](https://travis-ci.org/eclass/sequelize-paginate)
 [![devDependency Status](https://img.shields.io/david/dev/eclass/sequelize-paginate.svg)](https://david-dm.org/eclass/sequelize-paginate#info=devDependencies)
 
 > Sequelize model plugin for add paginate method
