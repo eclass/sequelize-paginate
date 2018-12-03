@@ -49,6 +49,7 @@
     "lodash.range": "3.2.0",
     "mocha": "5.2.0",
     "mysql2": "1.6.4",
+    "npm-github-config": "2.0.0",
     "prettier-standard": "8.0.1",
     "promise-sequential": "1.1.1",
     "semantic-release": "15.12.3",
@@ -93,22 +94,6 @@
     ]
   },
   "release": {
-    "verifyConditions": [
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git",
-      "@semantic-release/github"
-    ],
-    "prepare": [
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git"
-    ],
-    "publish": [
-      "@semantic-release/npm",
-      "@semantic-release/github"
-    ],
-    "success": false,
-    "fail": false
+    "extends": "npm-github-config"
   }
 }
