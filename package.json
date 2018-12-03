@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --fix .",
     "format": "prettier-standard '{src,test}/**/*.js'",
-    "test": "mocha test --exit --no-timeouts",
+    "test": "nyc mocha test --exit --no-timeouts",
     "commit": "commit",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
@@ -53,6 +53,8 @@
     "mocha": "5.2.0",
     "mysql2": "1.6.4",
     "npm-github-config": "2.0.0",
+    "nyc": "13.1.0",
+    "nyc-config-common": "1.0.1",
     "prettier-standard": "8.0.1",
     "promise-sequential": "1.1.1",
     "semantic-release": "15.12.3",
@@ -121,5 +123,8 @@
   },
   "release": {
     "extends": "npm-github-config"
+  },
+  "nyc": {
+    "extends": "nyc-config-common"
   }
 }
