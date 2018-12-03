@@ -30,14 +30,20 @@ describe('sequelizePaginate', () => {
     await Author.drop()
     await Author.sync({ force: true })
     await Book.sync({ force: true })
-    await sequential(range(1, 100).map(authorId => {
-      return () => Author.create({
-        name: `author${authorId}`,
-        books: range(1, 100).map(bookId => ({ name: `book${bookId}` }))
-      }, {
-        include: [ Book ]
+    await sequential(
+      range(1, 100).map(authorId => {
+        return () =>
+          Author.create(
+            {
+              name: `author${authorId}`,
+              books: range(1, 100).map(bookId => ({ name: `book${bookId}` }))
+            },
+            {
+              include: [Book]
+            }
+          )
       })
-    }))
+    )
   })
   describe('', () => {
     it('should paginate authors', async () => {
