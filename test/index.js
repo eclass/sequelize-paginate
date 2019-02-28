@@ -88,5 +88,14 @@ describe('sequelizePaginate', () => {
       expect(docs[0].books).to.be.an('array')
       expect(docs[0].books.length).to.equal(99)
     })
+
+    it('should paginate with defaults and group by statement', async () => {
+      const group = ['id']
+      const { docs, pages, total } = await Author.paginate({ group })
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(25)
+      expect(pages).to.equal(4)
+      expect(total).to.equal(99)
+    })
   })
 })
