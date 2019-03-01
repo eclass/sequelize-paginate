@@ -3,9 +3,14 @@
   "version": "1.1.4",
   "description": "Sequelize model plugin for add paginate method",
   "main": "src",
+  "types": "src/types.d.ts",
   "scripts": {
-    "lint": "eslint --fix .",
-    "format": "prettier-standard '{src,test}/**/*.js'",
+    "lint:js": "eslint . --fix",
+    "format:js": "prettier-standard '{src,test}/**/*.js'",
+    "lint:ts": "tslint --project . --fix '{src,test}/**/*.ts'",
+    "format:ts": "prettier-standard '{src,test}/**/*.ts'",
+    "lint": "npm run lint:js && npm run lint:ts",
+    "format": "npm run format:js && npm run format:ts",
     "test": "nyc mocha test --exit --no-timeouts",
     "commit": "commit",
     "travis-deploy-once": "travis-deploy-once",
@@ -37,17 +42,20 @@
     "@semantic-release/git": "7.0.5",
     "@semantic-release/github": "5.2.5",
     "@semantic-release/npm": "5.1.1",
+    "@types/sequelize": "4.27.38",
     "chai": "4.2.0",
-    "eslint": "5.9.0",
-    "eslint-config-jsdoc-strict": "1.0.0",
+    "eslint": "5.14.1",
+    "eslint-config-jsdoc-strict": "2.0.0",
+    "eslint-config-prettier": "4.1.0",
     "eslint-config-standard": "12.0.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-jsdoc": "3.9.1",
-    "eslint-plugin-node": "8.0.0",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-jsdoc": "4.1.1",
+    "eslint-plugin-node": "8.0.1",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-security": "1.4.0",
     "eslint-plugin-standard": "4.0.0",
     "husky": "1.2.0",
+    "jsdoc": "3.5.5",
     "lint-staged": "8.1.0",
     "lodash.range": "3.2.0",
     "mocha": "5.2.0",
@@ -59,13 +67,19 @@
     "promise-sequential": "1.1.1",
     "semantic-release": "15.12.3",
     "sequelize": "4.41.2",
-    "travis-deploy-once": "5.0.7"
+    "travis-deploy-once": "5.0.7",
+    "tsd-jsdoc": "2.1.3",
+    "tslint": "5.13.1",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-config-standard": "8.0.1",
+    "typescript": "3.3.3333"
   },
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
       "standard",
       "jsdoc-strict",
+      "plugin:promise/recommended",
       "plugin:security/recommended"
     ],
     "plugins": [
@@ -78,18 +92,7 @@
       ],
       "require-await": [
         "error"
-      ],
-      "promise/always-return": "error",
-      "promise/no-return-wrap": "error",
-      "promise/param-names": "error",
-      "promise/catch-or-return": "error",
-      "promise/no-native": "off",
-      "promise/no-nesting": "warn",
-      "promise/no-promise-in-callback": "warn",
-      "promise/no-callback-in-promise": "warn",
-      "promise/no-new-statics": "error",
-      "promise/no-return-in-finally": "warn",
-      "promise/valid-params": "warn"
+      ]
     }
   },
   "eslintIgnore": [
