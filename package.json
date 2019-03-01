@@ -127,7 +127,7 @@
   "renovate": {
     "automerge": "minor",
     "extends": [
-      ":library"
+      "config:js-lib"
     ]
   },
   "release": {
