@@ -54,7 +54,13 @@ class SequelizePaginate {
         }
         return acc
       }, {})
-      const total = await Model.count(countOptions)
+
+      let total = await Model.count(countOptions)
+
+      if (options.group !== undefined) {
+        total = total.length
+      }
+
       const pages = Math.ceil(total / paginate)
       options.limit = paginate
       options.offset = paginate * (page - 1)
