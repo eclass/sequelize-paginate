@@ -14,7 +14,8 @@
     "test": "nyc mocha test --exit --no-timeouts",
     "commit": "commit",
     "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "ts-compile-check": "tsc -p tsconfig.json --noEmit"
   },
   "engines": {
     "node": ">=8"
@@ -100,7 +101,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "npm run ts-compile-check && lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -108,6 +109,11 @@
     "linters": {
       "{src,test}/**/*.js": [
         "eslint --fix",
+        "prettier-standard",
+        "git add"
+      ],
+      "src/**/*.ts": [
+        "tslint --project . --fix",
         "prettier-standard",
         "git add"
       ]
