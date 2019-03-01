@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/eclass/sequelize-paginate/compare/v1.1.4...v1.1.5) (2019-03-01)
+
+
+### Bug Fixes
+
+* **typescript:** add types.d.ts ([a0af447](https://github.com/eclass/sequelize-paginate/commit/a0af447))
+
 ## [1.1.4](https://github.com/eclass/sequelize-paginate/compare/v1.1.3...v1.1.4) (2018-12-03)
 
 
