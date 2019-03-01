@@ -4,11 +4,7 @@
  * Class to paginate sequelite results.
  */
 class SequelizePaginate {
-  /**
-   * Sequelize Model
-   * @typedef {Object} Model
-   * @external {Model} http://docs.sequelizejs.com/class/lib/model.js~Model.html
-   */
+  /** @typedef {import('sequelize').Model} Model */
   /**
    * Method to append paginate method to Model.
    *
@@ -21,25 +17,28 @@ class SequelizePaginate {
    */
   paginate (Model) {
     /**
-     * The paginate options
-     * @typedef {Object} paginateOptions Sequelize query options
-     * @property {Number} [paginate=25] Results per page
-     * @property {Number} [page=1] Number of page
+     * @typedef {Object} Paginate Sequelize query options
+     * @property {number} [paginate=25] Results per page
+     * @property {number} [page=1] Number of page
+     */
+    /**
+     * @typedef {import('sequelize').FindOptions & Paginate} paginateOptions
      */
     /**
      * The paginate result
-     * @typedef {Object} paginateResult
+     * @typedef {Object} PaginateResult
      * @property {Array} docs Docs
-     * @property {Number} pages Number of page
-     * @property {Number} total Total of docs
+     * @property {number} pages Number of page
+     * @property {number} total Total of docs
      */
     /**
      * Pagination.
      *
      * @param {paginateOptions} [params] - Options to filter query.
-     * @returns {paginateResult} Total pages and docs.
+     * @returns {Promise<PaginateResult>} Total pages and docs.
      * @example
-     * const { docs, pages, total } = MyModel.paginate({ page: 1, paginate: 25 })
+     * const { docs, pages, total } = await MyModel.paginate({ page: 1, paginate: 25 })
+     * @memberof Model
      */
     const pagination = async function ({
       page = 1,
@@ -58,6 +57,7 @@ class SequelizePaginate {
       let total = await Model.count(countOptions)
 
       if (options.group !== undefined) {
+        // @ts-ignore
         total = total.length
       }
 
@@ -79,6 +79,7 @@ class SequelizePaginate {
       return { docs, pages, total }
     }
     const instanceOrModel = Model.Instance || Model
+    // @ts-ignore
     instanceOrModel.paginate = pagination
   }
 }
