@@ -97,5 +97,16 @@ describe('sequelizePaginate', () => {
       expect(pages).to.equal(4)
       expect(total).to.equal(99)
     })
+
+    it('should paginate with filters and order', async () => {
+      const { docs, pages, total } = await Author.paginate({
+        order: [['name', 'DESC']],
+        where: { name: { [Sequelize.Op.like]: 'author1%' } }
+      })
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(11)
+      expect(pages).to.equal(1)
+      expect(total).to.equal(11)
+    })
   })
 })
