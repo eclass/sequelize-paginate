@@ -43,7 +43,7 @@
     "@semantic-release/git": "7.0.8",
     "@semantic-release/github": "5.2.10",
     "@semantic-release/npm": "5.1.4",
-    "@types/sequelize": "4.27.38",
+    "@types/sequelize": "4.27.39",
     "chai": "4.2.0",
     "eslint": "5.15.0",
     "eslint-config-jsdoc-strict": "2.0.0",
