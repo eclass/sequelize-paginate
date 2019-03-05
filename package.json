@@ -45,7 +45,7 @@
     "@semantic-release/npm": "5.1.4",
     "@types/sequelize": "4.27.39",
     "chai": "4.2.0",
-    "eslint": "5.15.0",
+    "eslint": "5.15.1",
     "eslint-config-jsdoc-strict": "2.0.0",
     "eslint-config-prettier": "4.1.0",
     "eslint-config-standard": "12.0.0",
