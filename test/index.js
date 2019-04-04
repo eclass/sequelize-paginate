@@ -109,5 +109,19 @@ describe('sequelizePaginate', () => {
       expect(pages).to.equal(3)
       expect(total).to.equal(11)
     })
+
+    it('should paginate with custom scope', async () => {
+      Author.addScope('author1', {
+        where: { name: { [Sequelize.Op.like]: 'author1%' } }
+      })
+      const { docs, pages, total } = await Author.scope('author1').paginate({
+        order: [['name', 'DESC']],
+        paginate: 5
+      })
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(5)
+      expect(pages).to.equal(3)
+      expect(total).to.equal(11)
+    })
   })
 })
