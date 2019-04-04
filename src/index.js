@@ -54,7 +54,7 @@ class SequelizePaginate {
         return acc
       }, {})
 
-      let total = await Model.count(countOptions)
+      let total = await this.count(countOptions)
 
       if (options.group !== undefined) {
         // @ts-ignore
@@ -75,7 +75,7 @@ class SequelizePaginate {
       }
       /* eslint-enable no-console */
       if (params.order) options.order = params.order
-      const docs = await Model.findAll(options)
+      const docs = await this.findAll(options)
       return { docs, pages, total }
     }
     const instanceOrModel = Model.Instance || Model
