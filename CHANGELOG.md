@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/eclass/sequelize-paginate/compare/v1.1.5...v1.1.6) (2019-04-10)
+
+
+### Bug Fixes
+
+* allow for inclusion of scope by [@dsmackie](https://github.com/dsmackie) ([5861f9f](https://github.com/eclass/sequelize-paginate/commit/5861f9f)), closes [#46](https://github.com/eclass/sequelize-paginate/issues/46)
+
 ## [1.1.5](https://github.com/eclass/sequelize-paginate/compare/v1.1.4...v1.1.5) (2019-03-01)
 
 
