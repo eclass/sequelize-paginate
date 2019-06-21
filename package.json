@@ -67,7 +67,7 @@
     "prettier-standard": "9.1.1",
     "promise-sequential": "1.1.1",
     "semantic-release": "15.13.16",
-    "sequelize": "5.8.10",
+    "sequelize": "5.8.11",
     "travis-deploy-once": "5.0.11",
     "tsd-jsdoc": "2.3.0",
     "tslint": "5.17.0",
