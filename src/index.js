@@ -49,7 +49,6 @@ class SequelizePaginate {
     } = {}) {
       const options = Object.assign({}, params)
       const countOptions = Object.keys(options).reduce((acc, key) => {
-          console.log('KEY', key);
         if (!['order', 'include'].includes(key)) {
           if (key === 'attributes') {
               if (options.attributes.include && keepAttrs.length > 0) {
