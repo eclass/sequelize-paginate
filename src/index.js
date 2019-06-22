@@ -75,17 +75,19 @@ class SequelizePaginate {
         // attributes.include is ignored by count(), so we manually correct
         // the select statement before using findAll (maybe a better option is possible ?)
         countOptions.attributes = countOptions.attributes.include;
-        const query = this.sequelize.dialect.QueryGenerator.selectQuery(this.getTableName(), countOptions, this).slice(0, -1);
 
-        total = await this.sequelize.query(`SELECT COUNT(*) as nb FROM (${query}) as total`, {
+        let query = this.sequelize.dialect.QueryGenerator.selectQuery(this.getTableName(), countOptions, this).slice(0, -1);
+        query = `SELECT COUNT(*) as nb FROM (${query}) as total`;
+
+        total = await this.sequelize.query(query , {
           type: this.sequelize.QueryTypes.SELECT,
           raw: true
         })
 
-        if (total.length) {
-          total = total[0];
-          if (total['nb'])
-            total = total.nb;
+        if (total.length && ('nb' in total[0])) {
+          total = total[0]['nb'];
+        } else {
+          console.warn('(sequelize-pagination) Warning: the count request returned unexpected value. Expected [ { total: <int> } ], received', total, 'with query', query);
         }
 
       } else
