@@ -70,7 +70,7 @@ class SequelizePaginate {
       }, {})
 
       let total;
-      if (countOptions.attributes) {
+      if (countOptions.attributes && countOptions.attributes.include) {
 
         // attributes.include is ignored by count(), so we manually correct
         // the select statement before using findAll (maybe a better option is possible ?)
@@ -93,7 +93,7 @@ class SequelizePaginate {
       } else
         total = await this.count(countOptions)
 
-      if (options.group !== undefined) {
+      if (options.group !== undefined && Array.isArray( total )) {
         // @ts-ignore
         total = total.length
       }
