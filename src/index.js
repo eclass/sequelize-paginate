@@ -20,7 +20,7 @@ class SequelizePaginate {
      * @typedef {Object} Paginate Sequelize query options
      * @property {number} [paginate=25] Results per page
      * @property {number} [page=1] Number of page
-     * @property {number} [keepAttrs=[]] List of attributes.include elements to keep
+     * @property {number} [keepAttributes=[]] List of attributes.include elements to keep
      */
     /**
      * @typedef {import('sequelize').FindOptions & Paginate} paginateOptions
@@ -44,33 +44,47 @@ class SequelizePaginate {
     const pagination = async function ({
       page = 1,
       paginate = 25,
-      keepAttrs = [],
+      keepAttributes = [],
+      keepIncludes = [],
       ...params
     } = {}) {
       const options = Object.assign({}, params)
       const countOptions = Object.keys(options).reduce((acc, key) => {
-        if (!['order', 'include'].includes(key)) {
-          if (key === 'attributes') {
-              if (options.attributes.include && keepAttrs.length > 0) {
-                  const includes = options.attributes.include.filter(
-                      attrInc => keepAttrs.includes(attrInc[1])
-                  );
+        if (key !== 'order') {
+          switch (key) {
+            case 'attributes':
+              if (options.attributes.include && keepAttributes.length > 0) {
+                const includes = options.attributes.include.filter(
+                  attrInc => keepAttributes.includes(attrInc[1])
+                );
 
-                  if (includes)
-                      acc.attributes = {
-                          include: includes
-                      }
+                if (includes.length > 0)
+                  acc.attributes = {
+                    include: includes
+                  }
               }
-          } else {
+              break;
+            case 'include':
+              if (options.include.length > 0) {
+                const includes = options.include.filter(
+                  inc => inc.as && keepIncludes.includes(inc.as)
+                );
+
+                if (includes.length > 0)
+                  acc.include = includes;
+              }
+              break;
+            default:
               // eslint-disable-next-line security/detect-object-injection
               acc[key] = options[key]
+              break;
           }
         }
         return acc
       }, {})
 
       let total;
-      if (countOptions.attributes && countOptions.attributes.include) {
+      if (countOptions.attributes && countOptions.attributes.include && countOptions.attributes.include.length > 0) {
 
         // attributes.include is ignored by count(), so we manually correct
         // the select statement before using findAll (maybe a better option is possible ?)
