@@ -95,6 +95,7 @@ class SequelizePaginate {
 
         total = await this.sequelize.query(query , {
           type: this.sequelize.QueryTypes.SELECT,
+          replacements: countOptions.replacements ? countOptions.replacements : {},
           raw: true
         })
 
