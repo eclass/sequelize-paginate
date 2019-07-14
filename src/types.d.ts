@@ -7,8 +7,8 @@ export class SequelizePaginate<TInstance, TAttributes> {
 export interface Paginate {
   paginate?: number
   page?: number,
-  keepAttributes?: array,
-  keepIncludes?: array
+  keepAttributes?: string[],
+  keepIncludes?: string[]
 }
 
 export interface PaginateResult<TAttributes> {
