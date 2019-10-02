@@ -62,7 +62,7 @@
     "mocha": "6.2.1",
     "mysql2": "1.7.0",
     "npm-github-config": "2.0.0",
-    "nyc": "13.3.0",
+    "nyc": "14.1.1",
     "nyc-config-common": "1.0.1",
     "prettier-standard": "9.1.1",
     "promise-sequential": "1.1.1",
