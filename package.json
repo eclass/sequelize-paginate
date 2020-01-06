@@ -34,7 +34,9 @@
     "url": "https://github.com/eclass/sequelize-paginate/issues"
   },
   "homepage": "https://github.com/eclass/sequelize-paginate#readme",
-  "dependencies": {},
+  "dependencies": {
+    "sqlite3": "4.1.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "8.3.4",
     "@commitlint/config-conventional": "8.3.4",

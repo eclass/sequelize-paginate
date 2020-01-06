@@ -76,7 +76,9 @@ class SequelizePaginate {
       /* eslint-enable no-console */
       if (params.order) options.order = params.order
       const docs = await this.findAll(options)
-      return { docs, pages, total }
+      const nextPage = pages > page
+      const prevPage = pages && page > 1
+      return { docs, pages, total, nextPage, prevPage }
     }
     const instanceOrModel = Model.Instance || Model
     // @ts-ignore
