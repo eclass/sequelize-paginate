@@ -16,8 +16,6 @@ describe('sequelizePaginate', () => {
       dialect: 'sqlite',
       storage: path.join(__dirname, '/../database.sqlite')
     }
-
-    // const DATABASE = process.env.DATABASE || 'mysql://root:root@localhost/test'
     const sequelize = new Sequelize(DATABASE)
     await sequelize.authenticate()
     Author = sequelize.define('author', {
