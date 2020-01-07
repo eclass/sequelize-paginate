@@ -1,7 +1,7 @@
 import { FindOptions, Model } from 'sequelize'
 
 export class SequelizePaginate<TInstance, TAttributes> {
-  public paginate(Model: Model<TInstance, TAttributes>): void
+  public paginate (Model: Model<TInstance, TAttributes>): void
 }
 
 export interface Paginate {
@@ -10,14 +10,16 @@ export interface Paginate {
 }
 
 export interface PaginateResult<TAttributes> {
-  docs: Array<TAttributes>
+  docs: TAttributes[]
   pages: number
   total: number
+  prevPage: boolean
+  nextPage: boolean
 }
 
-export function paginate<TInstance, TAttributes>(
+export function paginate<TInstance, TAttributes> (
   Model: Model<TInstance, TAttributes>
 ): void
-export function pagination<T, TAttributes>(
+export function pagination<T, TAttributes> (
   params: FindOptions & Paginate
 ): Promise<TAttributes>
