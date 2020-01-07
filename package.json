@@ -34,9 +34,7 @@
     "url": "https://github.com/eclass/sequelize-paginate/issues"
   },
   "homepage": "https://github.com/eclass/sequelize-paginate#readme",
-  "dependencies": {
-    "sqlite3": "4.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "8.3.4",
     "@commitlint/config-conventional": "8.3.4",
@@ -70,6 +68,7 @@
     "promise-sequential": "1.1.1",
     "semantic-release": "15.14.0",
     "sequelize": "5.21.3",
+    "sqlite3": "4.1.1",
     "travis-deploy-once": "5.0.11",
     "tsd-jsdoc": "2.4.0",
     "tslint": "5.20.1",
