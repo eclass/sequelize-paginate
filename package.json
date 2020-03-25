@@ -60,7 +60,7 @@
     "lint-staged": "8.2.1",
     "lodash.range": "3.2.0",
     "mocha": "6.2.3",
-    "mysql2": "1.7.0",
+    "mysql2": "2.1.0",
     "npm-github-config": "2.0.1",
     "nyc": "14.1.1",
     "nyc-config-common": "1.0.1",
