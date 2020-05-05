@@ -5,6 +5,7 @@
  */
 class SequelizePaginate {
   /** @typedef {import('sequelize').Model} Model */
+  /** @typedef {import('sequelize').IncludeOptions} IncludeOptions */
   /**
    * Method to append paginate method to Model.
    *
@@ -45,11 +46,27 @@ class SequelizePaginate {
       paginate = 25,
       ...params
     } = {}) {
+      /**
+       * @description Checks if you have required aggregate.
+       * @function hasAggregate
+       * @param {Array<IncludeOptions>} includeKey - Include option.
+       * @returns {boolean} - Has aggregate.
+       * @example
+       * hasAggregate({ model: Model }) // false
+       * hasAggregate({ model: Model, required: true }) // false
+       */
+      const hasAggregate = includeKey => {
+        return !!includeKey.filter(inc => !!(inc && inc.required)).length > 0
+      }
+
       const options = Object.assign({}, params)
       const countOptions = Object.keys(options).reduce((acc, key) => {
         if (!['order', 'attributes', 'include'].includes(key)) {
           // eslint-disable-next-line security/detect-object-injection
           acc[key] = options[key]
+        } else if (key === 'include') {
+          // eslint-disable-next-line security/detect-object-injection
+          if (hasAggregate(options[key])) acc[key] = options[key]
         }
         return acc
       }, {})
