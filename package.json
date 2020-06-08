@@ -64,7 +64,7 @@
     "npm-github-config": "2.0.1",
     "nyc": "14.1.1",
     "nyc-config-common": "1.0.1",
-    "prettier-standard": "15.0.1",
+    "prettier-standard": "16.3.0",
     "promise-sequential": "1.1.1",
     "semantic-release": "15.14.0",
     "sequelize": "5.21.12",
