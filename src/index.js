@@ -5,10 +5,11 @@
  */
 class SequelizePaginate {
   /** @typedef {import('sequelize').Model} Model */
+  /** @typedef {typeof import('sequelize').Model} TModel */
   /**
    * Method to append paginate method to Model.
    *
-   * @param {Model} Model - Sequelize Model.
+   * @param {Model | TModel} Model - Sequelize Model.
    * @returns {*} -
    * @example
    * const sequelizePaginate = require('sequelize-paginate')
