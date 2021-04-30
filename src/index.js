@@ -45,9 +45,9 @@ class SequelizePaginate {
       paginate = 25,
       ...params
     } = {}) {
-      const options = Object.assign({}, params)
+      const options = { ...params }
       const countOptions = Object.keys(options).reduce((acc, key) => {
-        if (!['order', 'attributes', 'include'].includes(key)) {
+        if (!['order', 'attributes'].includes(key)) {
           // eslint-disable-next-line security/detect-object-injection
           acc[key] = options[key]
         }
