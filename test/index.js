@@ -123,5 +123,29 @@ describe('sequelizePaginate', () => {
       expect(pages).to.equal(3)
       expect(total).to.equal(11)
     })
+
+    it('should paginate with aggregate required', async () => {
+      const { docs, pages, total } = await Author.paginate({
+        include: [{ model: Book, where: { name: 'book100' }, required: true }],
+        order: [['id']]
+      })
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(0)
+      expect(pages).to.equal(0)
+      expect(total).to.equal(0)
+    })
+
+    it('should paginate with aggregate not required', async () => {
+      const { docs, pages, total } = await Author.paginate({
+        include: [{ model: Book, where: { name: 'book100' }, required: false }],
+        order: [['id']]
+      })
+      expect(docs).to.be.an('array')
+      expect(docs.length).to.equal(25)
+      expect(docs[0].books).to.be.an('array')
+      expect(docs[0].books.length).to.equal(0)
+      expect(pages).to.equal(4)
+      expect(total).to.equal(99)
+    })
   })
 })
