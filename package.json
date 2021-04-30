@@ -55,7 +55,7 @@
     "eslint-plugin-promise": "4.3.1",
     "eslint-plugin-security": "1.4.0",
     "eslint-plugin-standard": "4.1.0",
-    "husky": "3.1.0",
+    "husky": "6.0.0",
     "jsdoc": "3.6.6",
     "lint-staged": "8.2.1",
     "lodash.range": "3.2.0",
