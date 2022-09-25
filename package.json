@@ -36,7 +36,7 @@
   "homepage": "https://github.com/eclass/sequelize-paginate#readme",
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "8.3.5",
+    "@commitlint/cli": "8.3.6",
     "@commitlint/config-conventional": "8.3.4",
     "@commitlint/prompt-cli": "8.3.5",
     "@semantic-release/changelog": "3.0.6",
