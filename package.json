@@ -57,7 +57,7 @@
     "eslint-plugin-standard": "4.1.0",
     "husky": "3.1.0",
     "jsdoc": "3.6.6",
-    "lint-staged": "8.2.1",
+    "lint-staged": "13.1.0",
     "lodash.range": "3.2.0",
     "mocha": "6.2.3",
     "mysql2": "1.7.0",
