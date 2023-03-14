@@ -13,6 +13,7 @@ export interface PaginateResult<TAttributes> {
   docs: Array<TAttributes>
   pages: number
   total: number
+  currentPage: number
 }
 
 export function paginate<TInstance, TAttributes>(

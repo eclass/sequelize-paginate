@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
 // controller.js
 const { Op } = db.sequelize
 // Default page = 1 and paginate = 25
-const { docs, pages, total } = await db.MyModel.paginate()
+const { docs, pages, total, currentPage } = await db.MyModel.paginate()
 // Or with extra options
 const options = {
   attributes: ['id', 'name'],
@@ -42,7 +42,7 @@ const options = {
   order: [['name', 'DESC']],
   where: { name: { [Op.like]: `%elliot%` } }
 }
-const { docs, pages, total } = await db.MyModel.paginate(options)
+const { docs, pages, total, currentPage } = await db.MyModel.paginate(options)
 ```
 
 **NOTE:** _If **options** include **limit** or **offset** are ignored._

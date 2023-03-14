@@ -37,7 +37,7 @@ class SequelizePaginate {
      * @param {paginateOptions} [params] - Options to filter query.
      * @returns {Promise<PaginateResult>} Total pages and docs.
      * @example
-     * const { docs, pages, total } = await MyModel.paginate({ page: 1, paginate: 25 })
+     * const { docs, pages, total, currentPage } = await MyModel.paginate({ page: 1, paginate: 25 })
      * @memberof Model
      */
     const pagination = async function ({
@@ -76,7 +76,8 @@ class SequelizePaginate {
       /* eslint-enable no-console */
       if (params.order) options.order = params.order
       const docs = await this.findAll(options)
-      return { docs, pages, total }
+      const currentPage = parseInt(page)
+      return { docs, pages, total, currentPage }
     }
     const instanceOrModel = Model.Instance || Model
     // @ts-ignore

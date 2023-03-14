@@ -47,15 +47,16 @@ describe('sequelizePaginate', () => {
   })
   describe('', () => {
     it('should paginate with defaults', async () => {
-      const { docs, pages, total } = await Author.paginate()
+      const { docs, pages, total, currentPage } = await Author.paginate()
       expect(docs).to.be.an('array')
       expect(docs.length).to.equal(25)
       expect(pages).to.equal(4)
       expect(total).to.equal(99)
+      expect(currentPage).to.equal(1)
     })
 
     it('should paginate with page and paginate', async () => {
-      const { docs, pages, total } = await Author.paginate({
+      const { docs, pages, total, currentPage } = await Author.paginate({
         page: 2,
         paginate: 50
       })
@@ -63,10 +64,11 @@ describe('sequelizePaginate', () => {
       expect(docs.length).to.equal(49)
       expect(pages).to.equal(2)
       expect(total).to.equal(99)
+      expect(currentPage).to.equal(1)
     })
 
     it('should paginate and ignore limit and offset', async () => {
-      const { docs, pages, total } = await Author.paginate({
+      const { docs, pages, total, currentPage } = await Author.paginate({
         limit: 2,
         offset: 50
       })
@@ -74,10 +76,11 @@ describe('sequelizePaginate', () => {
       expect(docs.length).to.equal(25)
       expect(pages).to.equal(4)
       expect(total).to.equal(99)
+      expect(currentPage).to.equal(1)
     })
 
     it('should paginate with extras', async () => {
-      const { docs, pages, total } = await Author.paginate({
+      const { docs, pages, total, currentPage } = await Author.paginate({
         include: [{ model: Book }],
         order: [['id']]
       })
@@ -85,21 +88,25 @@ describe('sequelizePaginate', () => {
       expect(docs.length).to.equal(25)
       expect(pages).to.equal(4)
       expect(total).to.equal(99)
+      expect(currentPage).to.equal(1)
       expect(docs[0].books).to.be.an('array')
       expect(docs[0].books.length).to.equal(99)
     })
 
     it('should paginate with defaults and group by statement', async () => {
       const group = ['id']
-      const { docs, pages, total } = await Author.paginate({ group })
+      const { docs, pages, total, currentPage } = await Author.paginate({
+        group
+      })
       expect(docs).to.be.an('array')
       expect(docs.length).to.equal(25)
       expect(pages).to.equal(4)
       expect(total).to.equal(99)
+      expect(currentPage).to.equal(1)
     })
 
     it('should paginate with filters, order and paginate', async () => {
-      const { docs, pages, total } = await Author.paginate({
+      const { docs, pages, total, currentPage } = await Author.paginate({
         order: [['name', 'DESC']],
         where: { name: { [Sequelize.Op.like]: 'author1%' } },
         paginate: 5
@@ -108,13 +115,16 @@ describe('sequelizePaginate', () => {
       expect(docs.length).to.equal(5)
       expect(pages).to.equal(3)
       expect(total).to.equal(11)
+      expect(currentPage).to.equal(1)
     })
 
     it('should paginate with custom scope', async () => {
       Author.addScope('author1', {
         where: { name: { [Sequelize.Op.like]: 'author1%' } }
       })
-      const { docs, pages, total } = await Author.scope('author1').paginate({
+      const { docs, pages, total, currentPage } = await Author.scope(
+        'author1'
+      ).paginate({
         order: [['name', 'DESC']],
         paginate: 5
       })
@@ -122,6 +132,7 @@ describe('sequelizePaginate', () => {
       expect(docs.length).to.equal(5)
       expect(pages).to.equal(3)
       expect(total).to.equal(11)
+      expect(currentPage).to.equal(1)
     })
   })
 })
